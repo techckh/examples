@@ -1,5 +1,11 @@
+import os
+import sys
 import time
 from fastapi.testclient import TestClient
+
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.join(BASE_DIR, "../"))
+
 from api_server.main import app
 
 client = TestClient(app)
