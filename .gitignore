@@ -130,3 +130,6 @@ dmypy.json
 
 
 geo-spatial-data-visualization/data/
+
+suumo_scraper/data
+suumo_scraper/tests/data
