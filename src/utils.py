@@ -2,17 +2,6 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 
-"""
-import tensorflow as tf
-from tensorflow import keras
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.callbacks import EarlyStopping # Early Stopping Callback in the NN
-
-from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import IsolationForest
-from sklearn.linear_model import Ridge, HuberRegressor, LinearRegression
-"""
 from sklearn.preprocessing import OneHotEncoder
 import matplotlib.pyplot as plt
 
