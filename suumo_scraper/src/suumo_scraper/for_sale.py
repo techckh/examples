@@ -3,6 +3,13 @@ import requests
 from lxml import etree
 
 
+def get_new_listings(old_data, new_data):
+    assert type(old_data) == dict, 'error type'
+    assert type(new_data) == dict, 'error type'
+    diff = list(set(new_data) - set(old_data))
+    return diff
+
+
 def parse_input_options(html_str, input_type, input_name):
     tree = etree.HTML(html_str)
     rows = tree.xpath(".//input[@type='{}' and @name='{}']".format(input_type, input_name))
