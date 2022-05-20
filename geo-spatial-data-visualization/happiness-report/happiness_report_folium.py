@@ -38,4 +38,4 @@ for x in list_of_index:
         line_opacity=0.2,
         legend_name=x).add_to(m)
 folium.LayerControl(collapsed=False).add_to(m)
-m.save('map.html')
+m.save('folium_map.html')
