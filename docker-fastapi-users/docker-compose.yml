@@ -1,40 +1,16 @@
 version: '3.8'
 
 services:
-  web:
-    build:
-      context: .
-      dockerfile: ./compose/local/fastapi/Dockerfile
-    image: fastapi-users
-    # '/start' is the shell script used to run the service
-    command: /start
-    # this volume is used to map the files and folders on the host to the container
-    # so if we change code on the host, code in the docker container will also be changed
-    volumes:
-      - .:/app
-    ports:
-      - 8010:8000
-    env_file:
-      - .env/.dev-sample
-    depends_on:
-      - redis
-      - db
-
   db:
     image: postgres:13-alpine
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    #volumes:
+    #  - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_DB=default_db
       - POSTGRES_USER=db_user
       - POSTGRES_PASSWORD=db_password
-
-  redis:
-    image: redis:6-alpine
-    ports:
-      - 6379:6379
 
   pgadmin:
     container_name: pgadmin

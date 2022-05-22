@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from fastapi_users.config import settings
+from fastapi_login.config import settings
 
 # https://fastapi.tiangolo.com/tutorial/sql-databases/#create-the-sqlalchemy-engine
 engine = create_engine(

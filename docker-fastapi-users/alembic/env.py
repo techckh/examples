@@ -10,8 +10,8 @@ from alembic import context
 
 dir_path = dirname(dirname(os.path.realpath(__file__)))
 sys.path.insert(0, '%s\src'%dir_path)
-from fastapi_users.config import settings
-from fastapi_users.database import Base
+from fastapi_login.config import settings
+from fastapi_login.database import Base
 
 
 # this is the Alembic Config object, which provides
