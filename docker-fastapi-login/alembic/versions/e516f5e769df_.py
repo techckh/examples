@@ -24,6 +24,7 @@ def upgrade():
         sa.Column('email', sa.Unicode(200), nullable=False),
         sa.Column('password', sa.Unicode(200), nullable=False),
         sa.Column('name', sa.String(50)),
+        sa.Column('is_active', sa.Boolean),
         sa.Column('created_at', sa.DateTime)
     )
     # ### end Alembic commands ###

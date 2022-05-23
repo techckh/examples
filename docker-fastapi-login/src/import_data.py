@@ -26,7 +26,7 @@ if __name__ == '__main__':
         with open('{}/users.csv'.format(SEED_DATA_DIR), 'r') as f:
             conn = create_engine(DATABASE_URL).raw_connection()
             cursor = conn.cursor()
-            cmd = 'COPY users(id, email, password, name, created_at) FROM STDIN WITH (FORMAT CSV, HEADER FALSE)'
+            cmd = 'COPY users(id, email, password, name, is_active, created_at) FROM STDIN WITH (FORMAT CSV, HEADER FALSE)'
             cursor.copy_expert(cmd, f)
             conn.commit()
         print('done')

@@ -5,3 +5,5 @@ redis>=3.5.3
 alembic>=1.6.5
 SQLAlchemy>=1.4.20
 requests
+python-jose[cryptography]
+passlib[bcrypt]
