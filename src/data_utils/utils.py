@@ -68,6 +68,21 @@ def create_col_names(df_list):
     return output
 
 
+def basic_info(df):
+    stats = []
+    for col in df.columns:
+        stats.append((col,
+                      df[col].nunique(),
+                      round(df[col].isnull().sum() * 100 / df.shape[0], 3),
+                      round(df[col].value_counts(normalize=True, dropna=False).values[0] * 100, 3),
+                      df[col].dtype))
+
+    stats_df = pd.DataFrame(stats, columns=['特征', '属性个数', '缺失值占比', '最大属性占比', '特征类型'])
+    stats_df.sort_values('缺失值占比', ascending=False)[:10]
+
+    return stats_df
+
+
 def null_count(df_list, cols):
     assert type(df_list) == list, 'error input dataframe list, %s' % type(df_list)
     assert type(cols) == list, 'error input col name list, %s' % type(cols)
