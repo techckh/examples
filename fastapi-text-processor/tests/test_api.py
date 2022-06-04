@@ -1,65 +1,44 @@
-from fastapi import FastAPI
+import json
 from fastapi.testclient import TestClient
 from text_processor_api_server.config import create_app
+from jp_tokenizer.utils import parse_srt_file
 
 app = create_app()
 
 client = TestClient(app)
 
 
-def test_read_main():
+def test_read_index_hello():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello World"}
 
 
-def test_get_user():
-    exp_data = {
-        'id': 1,
-        'email': 'admin@test.com'
-    }
-    response = client.get("/users/1")
+def test_read_jp_hello():
+    response = client.get("/jp/hello_world")
     assert response.status_code == 200
-    assert response.json() == exp_data
+    assert response.json() == {"msg": "Hello World"}
 
 
-def test_get_users():
-    exp_data = {
-        'id': 1,
-        'email': 'admin@test.com'
+def test_post_jp_text_payload_01():
+    payload = {
+        'content': ['test line 1']
     }
-    response = client.get("/users/")
+    response = client.post('/jp/convert', json=payload)
     assert response.status_code == 200
-    data = response.json()
-    assert len(data) == 1
-    data = data[0]
-    assert data == exp_data
+    assert response.json()['msg'] == 'ok'
+    payload = response.json()['payload']
+    print(payload['content'][0])
+    assert len(payload['content'][0]) == 3
 
 
-def test_get_token_invalid_user():
-    form_data = {
-        'username': 'non_existing_user@test.com',
-        'password': '123456',
+def test_post_jp_text_payload_02():
+    payload = {
+        'content': parse_srt_file()
     }
-    response = client.post("/users/token", data=form_data)
-    assert response.status_code == 401
-
-
-def test_get_token():
-    form_data = {
-        'username': 'admin@test.com',
-        'password': '123456',
-    }
-    response = client.post("/users/token", data=form_data)
+    response = client.post('/jp/convert', json=payload)
     assert response.status_code == 200
-    data = response.json()
-    assert 'access_token' in data
-    assert data['token_type'] == 'bearer'
-
-    headers = dict()
-    headers['Authorization'] = 'bearer {}'.format(data['access_token'])
-    response = client.get("/users/me", headers=headers)
-    assert response.status_code == 200
-    data = response.json()
-    assert 'password' not in data
-    assert data['email'] == 'admin@test.com'
+    assert response.json()['msg'] == 'ok'
+    #payload = response.json()['payload']
+    print(len(payload['content']))
+    #assert len(payload['content'][0]) == 3

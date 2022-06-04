@@ -13,8 +13,8 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
-    from fastapi_login.users.router import router
-    app.include_router(router, prefix='/users')
+    from text_processor_api_server.jp_router import router as jp_router
+    app.include_router(jp_router, prefix='/jp')
 
     @app.get("/")
     async def root():
