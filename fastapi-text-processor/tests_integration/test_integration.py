@@ -1,7 +1,12 @@
+import os
+from dotenv import load_dotenv
 import requests
 from jp_tokenizer.utils import parse_srt_file
 
-server_url = 'http://localhost:8080'
+load_dotenv()
+#server_url = 'http://localhost:8080'
+server_url = os.getenv('GCLOUD_ENDPOINT')
+assert server_url
 
 
 def test_app_index():

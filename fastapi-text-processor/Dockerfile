@@ -21,7 +21,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY data ./data
 COPY src ./src
 COPY tests ./tests
-COPY tests/data ./tests/data
 COPY temp/jp_tokenizer ./src/jp_tokenizer
 
 ENV PYTHONPATH "${PYTHONPATH}:/app/src"
