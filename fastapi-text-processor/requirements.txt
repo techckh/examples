@@ -1,9 +1,6 @@
-psycopg2-binary>=2.9.1
+pytest
 fastapi>=0.66.0
 uvicorn[standard]>=0.14.0
-redis>=3.5.3
-alembic>=1.6.5
-SQLAlchemy>=1.4.20
 requests
-python-jose[cryptography]
-passlib[bcrypt]
+fugashi[unidic-lite]
+jaconv

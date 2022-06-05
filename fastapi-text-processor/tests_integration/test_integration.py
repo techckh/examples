@@ -1,30 +1,26 @@
-import json
-from fastapi.testclient import TestClient
-from text_processor_api_server.config import create_app
+import requests
 from jp_tokenizer.utils import parse_srt_file
 
-app = create_app()
-
-client = TestClient(app)
+server_url = 'http://localhost:8080'
 
 
-def test_read_index_hello():
-    response = client.get("/")
+def test_app_index():
+    response = requests.get(server_url)
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello World"}
 
 
-def test_read_jp_hello():
-    response = client.get("/jp/hello_world")
+def test_jp_index():
+    response = requests.get("{}/jp/hello_world".format(server_url))
     assert response.status_code == 200
     assert response.json() == {"msg": "Hello World"}
 
 
-def test_post_jp_text_payload_01():
+def test_jp_convert_payload_01():
     payload = {
         'content': ['test line 1']
     }
-    response = client.post('/jp/convert', json=payload)
+    response = requests.post('{}/jp/convert'.format(server_url), json=payload)
     assert response.status_code == 200
     assert response.json()['msg'] == 'ok'
     payload = response.json()['payload']
@@ -32,11 +28,11 @@ def test_post_jp_text_payload_01():
     assert len(payload['content'][0]) == 3
 
 
-def test_post_jp_text_payload_02():
+def test_jp_convert_payload_02():
     payload = {
         'content': parse_srt_file()
     }
-    response = client.post('/jp/convert', json=payload)
+    response = requests.post('{}/jp/convert'.format(server_url), json=payload)
     assert response.status_code == 200
     assert response.json()['msg'] == 'ok'
     payload = response.json()['payload']
