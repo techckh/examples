@@ -41,3 +41,4 @@ def test_post_jp_text_payload_02():
     assert response.json()['msg'] == 'ok'
     payload = response.json()['payload']
     assert len(payload['content']) == 1175
+

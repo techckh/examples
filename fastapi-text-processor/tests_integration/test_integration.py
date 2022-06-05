@@ -4,8 +4,8 @@ import requests
 from jp_tokenizer.utils import parse_srt_file
 
 load_dotenv()
-#server_url = 'http://localhost:8080'
-server_url = os.getenv('GCLOUD_ENDPOINT')
+server_url = 'http://localhost:8080'
+#server_url = os.getenv('GCLOUD_ENDPOINT')
 assert server_url
 
 
