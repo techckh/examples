@@ -17,9 +17,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.callbacks import EarlyStopping
 
-from utils import one_hot_encode_categorical_cols
-from utils import has_null, null_count, plot_simple, plot_values_distribution
-from utils import get_mean, get_mode, get_col_names, get_col_dtype
+from data_utils.utils import one_hot_encode_categorical_cols
+from data_utils.utils import has_null, null_count, plot_simple, plot_values_distribution
+from data_utils.utils import get_mean, get_mode, get_col_names, get_col_dtype
 
 
 def create_model(info, input_len):
