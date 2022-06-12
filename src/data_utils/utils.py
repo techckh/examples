@@ -10,13 +10,13 @@ def has_null(df, col):
     return df[col].isnull().any()
 
 
-def one_hot_encode_categorical_cols(df, cols, enc=None, drop=True):
+def one_hot_encode_categorical_cols(df, cat_cols, enc=None, drop=True):
     if not enc:
         enc = OneHotEncoder(handle_unknown='ignore')
-        enc.fit(df[cols])
+        enc.fit(df[cat_cols])
 
-    arry = enc.transform(df[cols]).toarray()
-    cat_columns = enc.get_feature_names_out(cols)
+    arry = enc.transform(df[cat_cols]).toarray()
+    cat_columns = enc.get_feature_names_out(cat_cols)
     tmp_df = pd.DataFrame(arry, columns=cat_columns)
 
     df.reset_index(inplace=True, drop=True)
@@ -29,7 +29,7 @@ def one_hot_encode_categorical_cols(df, cols, enc=None, drop=True):
     """
 
     if drop:
-        df.drop(cols, axis=1, inplace=True)
+        df.drop(cat_cols, axis=1, inplace=True)
     return enc, df
 
 
