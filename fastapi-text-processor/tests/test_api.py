@@ -42,3 +42,20 @@ def test_post_jp_text_payload_02():
     payload = response.json()['payload']
     assert len(payload['content']) == 1175
 
+
+def test_post_jp_text_payload_03():
+    words = list()
+    with open('data/top_50_compound_verbs_2.txt', 'r', encoding='utf8') as f:
+        lines = f.readlines()
+        for line in lines:
+            words.append(line.strip())
+    payload = {
+        'content': words
+    }
+    response = client.post('/jp/convert', json=payload)
+    assert response.status_code == 200
+    assert response.json()['msg'] == 'ok'
+    payload = response.json()['payload']
+
+    tmp_str = json.dumps(payload, indent=2, ensure_ascii=False)
+    print(tmp_str)
