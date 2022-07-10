@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -186,6 +187,18 @@ def plot_normal(ax, mean, std, color='black'):
     x = np.linspace(mean-4*std, mean+4*std, 200)
     p = stats.norm.pdf(x, mean, std)
     z = ax.plot(x, p, color, linewidth=1)
+
+
+def output_markdown():
+    cur_dir = os.getcwd()
+    files = os.listdir(cur_dir)
+    imgs = list()
+    for file in files:
+        if not file.endswith('.png'):
+            continue
+        imgs.append(file)
+    for img in imgs:
+        print(f'![]({img})')
 
 
 def test_one_hot_encode_categorical_cols():
