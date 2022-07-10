@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 
+from scipy import stats
 from sklearn.preprocessing import OneHotEncoder
 import matplotlib.pyplot as plt
 
@@ -171,6 +172,20 @@ def plot_values_distribution(df, col_name):
     sns.barplot(x=table.index, y=table.values)
     plt.title("Distribution plot of " + col_name)
     plt.show()
+
+
+def get_importance_features_table(importances, cols):
+    table = dict()
+    for i in range(len(importances)):
+        table[cols[i]] = importances[i]
+    val = dict(sorted(table.items(), key=lambda item: item[1], reverse=True))
+    return val
+
+
+def plot_normal(ax, mean, std, color='black'):
+    x = np.linspace(mean-4*std, mean+4*std, 200)
+    p = stats.norm.pdf(x, mean, std)
+    z = ax.plot(x, p, color, linewidth=1)
 
 
 def test_one_hot_encode_categorical_cols():
