@@ -19,3 +19,8 @@ class User(UserBase):
 
 class UserInDB(User):
     password: str
+
+
+class UserDefault(object):
+    email: str
+    password: str
