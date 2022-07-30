@@ -50,7 +50,7 @@ if __name__ == '__main__':
     print(df.head())
 
     df = df[df['neighbourhood'].isin([*code_table])]
-    df['geo_json_code'] = df['neighbourhood'].apply(lambda x:code_table[x])
+    df['geo_json_code'] = df['neighbourhood'].apply(lambda x: code_table[x])
     df['geo_json_code'] = df['geo_json_code'].astype('str')
 
     tmp = pd.read_csv('../data/airbnb/listings_summary.csv')
