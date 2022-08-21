@@ -130,4 +130,10 @@ dmypy.json
 
 env_files/
 
+.cache/
+.config/
+.ipython/
+.jupyter/
+.local/
+
 deep-reinforcement-learning-trading/
