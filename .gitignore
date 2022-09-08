@@ -137,3 +137,8 @@ env_files/
 .local/
 
 deep-reinforcement-learning-trading/
+
+.vs/
+bin/
+obj/
+
