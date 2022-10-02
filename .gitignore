@@ -142,3 +142,5 @@ deep-reinforcement-learning-trading/
 bin/
 obj/
 
+working/
+.idea/
